@@ -14,7 +14,6 @@
 
 void	ft_check_died(t_philo *philo)
 {
-	sem_wait(philo->data->died);
 	if (philo->data->nbr_philo == 1)
 		ft_usleep(philo->data->time_to_die, philo);
 	if (philo->next_eat <= ft_time_msc())
@@ -26,7 +25,6 @@ void	ft_check_died(t_philo *philo)
 		ft_unlink_sem(philo, 1);
 		exit(0);
 	}
-	sem_post(philo->data->died);
 }
 
 void	ft_usleep(int t, t_philo *philo)
@@ -40,7 +38,6 @@ void	ft_usleep(int t, t_philo *philo)
 		if (philo->data->nbr_philo > 1)
 		{
 			ft_check_died(philo);
-			sem_wait(philo->data->died);
 			if (philo->data->nbr_time_to_eat != -1)
 			{
 				if (philo->nbr_eat > philo->data->nbr_time_to_eat)
@@ -51,7 +48,6 @@ void	ft_usleep(int t, t_philo *philo)
 					exit(0);
 				}
 			}
-			sem_post(philo->data->died);
 		}
 	}
 }
