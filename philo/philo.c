@@ -56,10 +56,7 @@ void	init_data(t_data **node, char **av)
 		data->nbr_time_to_eat = -1;
 	data->start = 0;
 }
-void f()
-{
-	system("leaks philo");
-}
+
 int	main(int ac, char **av)
 {
 	t_philo		*philo;
